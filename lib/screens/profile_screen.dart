@@ -26,6 +26,11 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
 
     _bloc = BlocProvider.of<ProfileBloc>(context);
     _bloc.loadData();
+
+    nestedController.addListener(() {
+      double offset = nestedController.offset;
+      _bloc.changeShadow(offset);
+    });
   }
 
   @override
@@ -54,7 +59,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   Widget _buildContentPage(Profile model) {
     return Column(
       children: <Widget>[
-        MyAppBar(model.avatar, model.name),
+        _buildAppBar(model.avatar, model.name),
         Expanded(
           child: NestedScrollView(
             physics: ClampingScrollPhysics(),
@@ -71,6 +76,17 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAppBar(String avatar, String name) {
+    return StreamBuilder<bool>(
+      stream: _bloc.shadowStream,
+      initialData: false,
+      builder: (context, snapshot) {
+        bool hasShadow = snapshot.data ?? false;
+        return MyAppBar(avatar, name, hasShadow: hasShadow);
+      }
     );
   }
 

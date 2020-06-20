@@ -7,15 +7,28 @@ import 'package:flutter_dating_meetai/widgets/my_fade_image.dart';
 class MyAppBar extends StatelessWidget {
   final String avatar;
   final String name;
+  final bool hasShadow;
 
-  MyAppBar(this.avatar, this.name);
+  MyAppBar(this.avatar, this.name, {this.hasShadow = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: Constants.heightAppBar,
-      margin: EdgeInsets.symmetric(horizontal: 16),
-      child: Center(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: hasShadow
+            ? <BoxShadow>[
+          BoxShadow(
+              color: Color(0x5e000000),
+              offset: Offset(0, 2),
+              blurRadius: 2,
+              spreadRadius: 0)
+        ]
+            : [],
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: <Widget>[
             ClipRRect(
