@@ -18,6 +18,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
     super.initState();
 
     _bloc = BlocProvider.of<ProfileBloc>(context);
+    _bloc.loadData();
   }
 
   @override

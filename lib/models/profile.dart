@@ -5,8 +5,8 @@ class Profile {
   Profile({
     this.username,
     this.name,
-    birthday,
-    workDate,
+    int birthday,
+    int workDate,
     this.work,
     this.education,
     this.hobbies,
@@ -15,13 +15,13 @@ class Profile {
     this.bio,
     this.moment,
   }) {
-    this.birthdate = birthday.toDateTime();
+    this.birthday = birthday.toDateTime();
     this.workDate = workDate.toDateTime();
   }
 
   String username;
   String name;
-  DateTime birthdate;
+  DateTime birthday;
   DateTime workDate;
   String work;
   String education;
@@ -48,7 +48,7 @@ class Profile {
   Map<String, dynamic> toJson() => {
     "username": username,
     "name": name,
-    "birthdate": birthdate,
+    "birthdate": birthday,
     "work_date": workDate,
     "work": work,
     "education": education,
