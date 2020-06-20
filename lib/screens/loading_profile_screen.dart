@@ -24,7 +24,7 @@ class _LoadingProfileScreenState extends State<LoadingProfileScreen> {
 
   Widget _buildLoadingText() {
     return Container(
-      margin: EdgeInsets.only(top: 12, left: 16, right: 16),
+      margin: EdgeInsets.only(top: 28, left: 16, right: 16),
       child: Shimmer.fromColors(
         baseColor: MyColor.grey,
         highlightColor: MyColor.highlightGrey,

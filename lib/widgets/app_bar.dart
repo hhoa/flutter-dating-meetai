@@ -39,7 +39,7 @@ class MyAppBar extends StatelessWidget {
             ),
             Icon(
               Icons.favorite_border,
-              color: MyColor.heartOutline,
+              color: MyColor.redIcon,
             ),
           ],
         ),

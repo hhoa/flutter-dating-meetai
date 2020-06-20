@@ -8,6 +8,7 @@ import 'package:flutter_dating_meetai/screens/loading_profile_screen.dart';
 import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/widgets/app_bar.dart';
 import 'package:flutter_dating_meetai/widgets/list_horizontal_images.dart';
+import 'package:flutter_dating_meetai/widgets/user_info.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -53,10 +54,22 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
       children: <Widget>[
         MyAppBar(model.avatar, model.name),
         ListHorizontalImages(model.images),
-//        _buildListHorizontal(),
-//        _buildInfo(),
+        _buildInfo(model),
 //        _buildMoment(),
       ],
+    );
+  }
+
+  Widget _buildInfo(Profile model) {
+    return Container(
+      margin: EdgeInsets.only(top: 12),
+      child: UserInfo(
+        name: model.name,
+        birthday: model.birthday,
+        work: model.work,
+        education: model.education,
+        bio: model.bio,
+      ),
     );
   }
 }
