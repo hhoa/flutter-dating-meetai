@@ -31,3 +31,9 @@ extension DateTimeExtension on DateTime {
     return "${this.day.toString().padLeft(2, "0")} - ${this.month.toString().padLeft(2, "0")} - ${this.year}";
   }
 }
+
+extension ListExtension on List {
+  bool isListEmpty() => this == null || this.isEmpty;
+
+  bool isListNotEmpty() => !this.isListEmpty();
+}

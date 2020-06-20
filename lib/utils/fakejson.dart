@@ -1,6 +1,7 @@
 class FakeJson {
   static String fakeProfileJson = """{
     "profile": {
+      "avatar": "https://www.w3schools.com/w3images/avatar6.png",
       "username": "ammyvy",
       "name": "Amy Nguyen",
       "birthdate": 762652800,

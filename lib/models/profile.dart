@@ -3,6 +3,7 @@ import 'package:flutter_dating_meetai/utils/utility.dart';
 
 class Profile {
   Profile({
+    this.avatar,
     this.username,
     this.name,
     int birthday,
@@ -19,6 +20,7 @@ class Profile {
     this.workDate = workDate.toDateTime();
   }
 
+  String avatar;
   String username;
   String name;
   DateTime birthday;
@@ -32,6 +34,7 @@ class Profile {
   List<Moment> moment;
 
   factory Profile.fromJson(Map<String, dynamic> json) => Profile(
+    avatar: Utils.parse<String>(json["avatar"]),
     username: Utils.parse<String>(json["username"]),
     name: Utils.parse<String>(json["name"]),
     birthday: Utils.parse<int>(json["birthdate"]),
