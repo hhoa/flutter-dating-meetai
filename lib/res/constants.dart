@@ -3,5 +3,5 @@ class Constants {
 
   static double heightAvatar = 28;
 
-  static double heightSliderImageLoading = 300;
+  static double heightSliderImage = 300;
 }

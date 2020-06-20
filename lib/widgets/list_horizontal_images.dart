@@ -88,7 +88,7 @@ class _ListHorizontalImagesState extends BaseState<ListHorizontalImages> {
 
   Widget _buildListImages() {
     return Container(
-      height: Constants.heightSliderImageLoading,
+      height: Constants.heightSliderImage,
       child: PageView.builder(
         controller: _pageController,
         itemBuilder: (BuildContext context, int index) {

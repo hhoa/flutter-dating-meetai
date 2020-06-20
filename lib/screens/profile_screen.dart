@@ -9,6 +9,7 @@ import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/widgets/app_bar.dart';
 import 'package:flutter_dating_meetai/widgets/list_horizontal_images.dart';
 import 'package:flutter_dating_meetai/widgets/user_info.dart';
+import 'package:flutter_dating_meetai/widgets/user_moments.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends BaseState<ProfileScreen> {
   ProfileBloc _bloc;
+  ScrollController nestedController = ScrollController();
 
   @override
   void initState() {
@@ -53,23 +55,58 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
     return Column(
       children: <Widget>[
         MyAppBar(model.avatar, model.name),
-        ListHorizontalImages(model.images),
-        _buildInfo(model),
-//        _buildMoment(),
+        Expanded(
+          child: NestedScrollView(
+            physics: ClampingScrollPhysics(),
+            controller: nestedController,
+            headerSliverBuilder: (BuildContext context,
+                bool innerBoxIsScrolled) {
+              return <Widget>[
+                _buildListHorizontal(model.images),
+                _buildInfo(model),
+                _buildPadding(),
+              ];
+            },
+            body: UserMoments(model.moment),
+          ),
+        ),
       ],
     );
   }
 
+  Widget _buildListHorizontal(List<String> images) {
+    return SliverToBoxAdapter(
+      child: ListHorizontalImages(images),
+    );
+  }
+
   Widget _buildInfo(Profile model) {
-    return Container(
-      margin: EdgeInsets.only(top: 12),
-      child: UserInfo(
-        name: model.name,
-        birthday: model.birthday,
-        work: model.work,
-        education: model.education,
-        bio: model.bio,
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: 12),
+        child: UserInfo(
+          name: model.name,
+          birthday: model.birthday,
+          work: model.work,
+          education: model.education,
+          bio: model.bio,
+        ),
       ),
     );
+  }
+
+  Widget _buildPadding() {
+    return SliverPadding(
+      padding: const EdgeInsets.only(top: 32),
+      sliver: SliverToBoxAdapter(
+        child: Container(),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    nestedController.dispose();
+    super.dispose();
   }
 }

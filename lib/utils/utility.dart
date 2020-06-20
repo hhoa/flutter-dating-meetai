@@ -64,6 +64,12 @@ extension DateTimeExtension on DateTime {
     if (this == null) return "";
     return "${this.day.toString().padLeft(2, "0")} ${this.month.toMmm()} ${this.year}";
   }
+
+  int differenceInDays() {
+    if (this == null) return 0;
+    DateTime now = DateTime.now();
+    return now.difference(this).inDays;
+  }
 }
 
 extension ListExtension on List {

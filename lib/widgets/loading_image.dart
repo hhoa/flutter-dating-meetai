@@ -8,7 +8,7 @@ class LoadingImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Constants.heightSliderImageLoading,
+      height: Constants.heightSliderImage,
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[

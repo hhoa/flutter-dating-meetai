@@ -45,7 +45,7 @@ class Profile {
     songs: json["songs"] == null ? [] : List<String>.from(json["songs"].map((x) => x)),
     images: json["images"] == null ? [] : List<String>.from(json["images"].map((x) => x)),
     bio: Utils.parse<String>(json["bio"]),
-    moment: json["moment"] == null ? null : List<Moment>.from(json["moment"].map((x) => Moment.fromJson(x))),
+    moment: json["moment"] == null ? [] : List<Moment>.from(json["moment"].map((x) => Moment.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
