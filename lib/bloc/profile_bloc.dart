@@ -13,6 +13,14 @@ class ProfileBloc extends BlocBase {
 
   bool _hasShadow = false;
 
+  BehaviorSubject<double> _lovePercentController = BehaviorSubject();
+  Stream<double> get lovePercentStream => _lovePercentController.stream;
+  double lovePercent = 50;
+
+  BehaviorSubject<bool> _isActiveLoveController = BehaviorSubject();
+  Stream<bool> get isActiveLoveStream => _isActiveLoveController.stream;
+  bool isActiveLove = true;
+
   void loadData() {
     Future.delayed(Duration(milliseconds: 1000), () {
       ProfileModel model = profileModelFromJson(FakeJson.fakeProfileJson);
@@ -30,10 +38,17 @@ class ProfileBloc extends BlocBase {
     }
   }
 
+  void changeHeart() {
+    isActiveLove = !isActiveLove;
+    _isActiveLoveController.add(isActiveLove);
+  }
+
   @override
   void dispose() {
     _mainController.close();
     _shadowController.close();
+    _lovePercentController.close();
+    _isActiveLoveController.close();
   }
 
 }

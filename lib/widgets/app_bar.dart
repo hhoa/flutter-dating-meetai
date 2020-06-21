@@ -3,6 +3,7 @@ import 'package:flutter_dating_meetai/res/colors.dart';
 import 'package:flutter_dating_meetai/res/constants.dart';
 import 'package:flutter_dating_meetai/res/fonts.dart';
 import 'package:flutter_dating_meetai/widgets/my_fade_image.dart';
+import 'package:flutter_dating_meetai/widgets/pulse_heart.dart';
 
 class MyAppBar extends StatelessWidget {
   final String avatar;
@@ -50,10 +51,7 @@ class MyAppBar extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Icon(
-              Icons.favorite_border,
-              color: MyColor.redIcon,
-            ),
+            PulseHeart(),
           ],
         ),
       ),
