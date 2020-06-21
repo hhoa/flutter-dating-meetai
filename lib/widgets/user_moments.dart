@@ -3,6 +3,7 @@ import 'package:flutter_dating_meetai/models/moment.dart';
 import 'package:flutter_dating_meetai/res/fonts.dart';
 import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/utils/utility.dart';
+import 'package:flutter_dating_meetai/widgets/bouncing_button.dart';
 import 'package:flutter_dating_meetai/widgets/chip_outline_border.dart';
 import 'package:flutter_dating_meetai/widgets/my_fade_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -127,6 +128,51 @@ class _UserMomentsState extends BaseState<UserMoments> {
   }
 
   Widget buildImage(int momentIndex, int imageIndex) {
-    return MyFadeImage(widget.moments[momentIndex].images[imageIndex]);
+    return BouncingButton(
+      onTap: () {
+        showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (context) {
+              return Scaffold(
+                backgroundColor: Colors.black.withOpacity(0.8),
+                body: SafeArea(
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child: Dismissible(
+                          key: ValueKey("MyFadeImage$momentIndex$imageIndex"),
+                          onDismissed: (_) => closeDialog(),
+                          direction: DismissDirection.down,
+                          child: MyFadeImage(
+                            widget.moments[momentIndex].images[imageIndex],
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 16,
+                        top: 16,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                          onPressed: closeDialog,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            });
+      },
+      shrinkOffset: 0.96,
+      child: MyFadeImage(
+        widget.moments[momentIndex].images[imageIndex],
+      ),
+    );
   }
+
+  void closeDialog() => Navigator.of(context).pop();
 }
