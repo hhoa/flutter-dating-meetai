@@ -37,7 +37,7 @@ class _PulseHeartState extends State<PulseHeart> with TickerProviderStateMixin {
     inactiveAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
         CurvedAnimation(parent: _inactiveController, curve: Curves.easeOut));
     _activeController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2500));
+        vsync: this, duration: Duration(milliseconds: 1800));
 
     scaleActiveAnimation1 = Tween<double>(
       begin: 1,
@@ -144,16 +144,16 @@ class _PulseHeartState extends State<PulseHeart> with TickerProviderStateMixin {
               return Stack(
                 children: <Widget>[
                   Opacity(
-                    opacity: opacityActiveAnimation1.value,
+                    opacity: opacityActiveAnimation2.value,
                     child: Transform.scale(
-                      scale: scaleActiveAnimation1.value,
+                      scale: scaleActiveAnimation2.value,
                       child: child,
                     ),
                   ),
                   Opacity(
-                    opacity: opacityActiveAnimation2.value,
+                    opacity: opacityActiveAnimation1.value,
                     child: Transform.scale(
-                      scale: scaleActiveAnimation2.value,
+                      scale: scaleActiveAnimation1.value,
                       child: child,
                     ),
                   ),

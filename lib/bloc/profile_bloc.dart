@@ -15,7 +15,7 @@ class ProfileBloc extends BlocBase {
 
   BehaviorSubject<bool> _isActiveLoveController = BehaviorSubject();
   Stream<bool> get isActiveLoveStream => _isActiveLoveController.stream;
-  bool isActiveLove = true;
+  bool isActiveLove = false;
 
   void loadData() {
     Future.delayed(Duration(milliseconds: 1000), () {

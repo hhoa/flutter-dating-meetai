@@ -7,6 +7,7 @@ import 'package:flutter_dating_meetai/models/profile_model.dart';
 import 'package:flutter_dating_meetai/screens/loading_profile_screen.dart';
 import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/widgets/app_bar.dart';
+import 'package:flutter_dating_meetai/widgets/hobbies_songs.dart';
 import 'package:flutter_dating_meetai/widgets/list_horizontal_images.dart';
 import 'package:flutter_dating_meetai/widgets/love_sliderbar.dart';
 import 'package:flutter_dating_meetai/widgets/user_info.dart';
@@ -70,6 +71,7 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
               return <Widget>[
                 _buildListHorizontal(model.images),
                 _buildInfo(model),
+                _buildChips(model.hobbies, model.songs),
                 _buildSliderBar(model.username),
                 _buildPadding(),
               ];
@@ -109,6 +111,15 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
           education: model.education,
           bio: model.bio,
         ),
+      ),
+    );
+  }
+
+  Widget _buildChips(List<String> hobbies, List<String> songs) {
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.only(top: 12),
+        child: HobbiesAndSong(hobbies, songs),
       ),
     );
   }
