@@ -139,7 +139,7 @@ class _UserMomentsState extends BaseState<UserMoments> {
       case 1:
         return "Yesterday";
       default:
-        return "${days} days ago";
+        return "$days days ago";
     }
   }
 

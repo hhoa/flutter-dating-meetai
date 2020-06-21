@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dating_meetai/res/colors.dart';
 import 'package:flutter_dating_meetai/res/constants.dart';
 import 'package:flutter_dating_meetai/res/fonts.dart';
 import 'package:flutter_dating_meetai/widgets/my_fade_image.dart';

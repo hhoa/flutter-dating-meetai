@@ -4,12 +4,9 @@ import 'package:flutter_dating_meetai/res/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingAppBar extends StatelessWidget {
-  double widthScreen = 0;
 
   @override
   Widget build(BuildContext context) {
-    widthScreen = MediaQuery.of(context).size.width;
-
     return Container(
       height: Constants.heightAppBar,
       margin: EdgeInsets.symmetric(horizontal: 16),
@@ -20,7 +17,7 @@ class LoadingAppBar extends StatelessWidget {
           children: <Widget>[
             _buildCircle(),
             paddingHorizontal(12),
-            _buildName(),
+            _buildName(context),
           ],
         ),
       ),
@@ -44,9 +41,9 @@ class LoadingAppBar extends StatelessWidget {
     );
   }
 
-  Widget _buildName() {
+  Widget _buildName(BuildContext context) {
     return Container(
-      width: widthScreen / 3,
+      width: MediaQuery.of(context).size.width / 3,
       margin: EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
