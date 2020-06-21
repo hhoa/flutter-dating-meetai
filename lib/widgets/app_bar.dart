@@ -20,12 +20,12 @@ class MyAppBar extends StatelessWidget {
         color: Colors.white,
         boxShadow: hasShadow
             ? <BoxShadow>[
-          BoxShadow(
-              color: Color(0x5e000000),
-              offset: Offset(0, 2),
-              blurRadius: 2,
-              spreadRadius: 0)
-        ]
+                BoxShadow(
+                    color: Color(0x5e000000),
+                    offset: Offset(0, 2),
+                    blurRadius: 2,
+                    spreadRadius: 0)
+              ]
             : [],
       ),
       child: Padding(
