@@ -123,13 +123,24 @@ class _UserMomentsState extends BaseState<UserMoments> {
             left: 16,
             bottom: 16,
             child: Text(
-              "${moment.date.differenceInDays()} days ago",
+              getDayInString(moment.date.differenceInDays()),
               style: MyAssetFont.boldWhite,
             ),
           )
         ],
       ),
     );
+  }
+
+  String getDayInString(int days) {
+    switch (days) {
+      case 0:
+        return "Today";
+      case 1:
+        return "Yesterday";
+      default:
+        return "${days} days ago";
+    }
   }
 
   Widget buildImage(int momentIndex, int imageIndex) {
@@ -185,9 +196,7 @@ class _UserMomentsState extends BaseState<UserMoments> {
       child: Row(
         children: <Widget>[
           Expanded(
-            child: Container(
-                height: 1,
-                color: MyColor.grey),
+            child: Container(height: 1, color: MyColor.grey),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -197,9 +206,7 @@ class _UserMomentsState extends BaseState<UserMoments> {
             ),
           ),
           Expanded(
-            child: Container(
-                height: 1,
-                color: MyColor.grey),
+            child: Container(height: 1, color: MyColor.grey),
           ),
         ],
       ),

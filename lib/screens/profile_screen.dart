@@ -4,6 +4,7 @@ import 'package:flutter_dating_meetai/bloc/bloc_provider.dart';
 import 'package:flutter_dating_meetai/bloc/profile_bloc.dart';
 import 'package:flutter_dating_meetai/models/profile.dart';
 import 'package:flutter_dating_meetai/models/profile_model.dart';
+import 'package:flutter_dating_meetai/res/colors.dart';
 import 'package:flutter_dating_meetai/screens/loading_profile_screen.dart';
 import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/widgets/app_bar.dart';
@@ -38,6 +39,13 @@ class _ProfileScreenState extends BaseState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(0),
+          child: AppBar(
+            backgroundColor: MyColor.redIcon,
+            brightness: Brightness.dark,
+          ),
+      ),
       body: SafeArea(
         top: true,
         left: false,

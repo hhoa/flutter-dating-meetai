@@ -18,7 +18,7 @@ class ProfileBloc extends BlocBase {
   bool isActiveLove = false;
 
   void loadData() {
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(Duration(milliseconds: 2000), () {
       ProfileModel model = profileModelFromJson(FakeJson.fakeProfileJson);
       _mainController.add(model);
     });
