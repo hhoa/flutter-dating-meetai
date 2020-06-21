@@ -73,31 +73,26 @@ class HobbiesAndSong extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: 16),
         itemBuilder: (context, index) {
-          if (index == 0) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Text(
-                "Songs",
-                style: MyAssetFont.boldName,
-              ),
-            );
-          }
-
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Chip(
-              padding: EdgeInsets.symmetric(horizontal: 2),
-              label: Text(
-                songs[index - 1],
-                style: MyAssetFont.boldChip,
-              ),
-              avatar: Icon(
-                Icons.music_note,
-                color: Colors.white,
-                size: Constants.sizeHeart,
-              ),
-              backgroundColor: MyColor.songsChip,
-            ),
+            child: index == 0
+                ? Text(
+                    "Songs",
+                    style: MyAssetFont.boldName,
+                  )
+                : Chip(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    label: Text(
+                      songs[index - 1],
+                      style: MyAssetFont.boldChip,
+                    ),
+                    avatar: Icon(
+                      Icons.music_note,
+                      color: Colors.white,
+                      size: Constants.sizeHeart,
+                    ),
+                    backgroundColor: MyColor.songsChip,
+                  ),
           );
         },
         itemCount: songs.length + 1,

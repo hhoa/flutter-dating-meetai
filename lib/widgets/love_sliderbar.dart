@@ -43,9 +43,13 @@ class _LoveSliderBarState extends State<LoveSliderBar> {
         SizedBox(
           width: 12,
         ),
-        Text(
-          "How much do you like ${widget.name}",
-          style: MyAssetFont.boldAvatar,
+        Expanded(
+          child: Text(
+            "How much do you like ${widget.name}?",
+            style: MyAssetFont.boldAvatar,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

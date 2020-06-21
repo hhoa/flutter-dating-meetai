@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dating_meetai/models/moment.dart';
+import 'package:flutter_dating_meetai/res/colors.dart';
 import 'package:flutter_dating_meetai/res/fonts.dart';
 import 'package:flutter_dating_meetai/utils/screen_utils.dart';
 import 'package:flutter_dating_meetai/utils/utility.dart';
@@ -45,14 +46,14 @@ class _UserMomentsState extends BaseState<UserMoments> {
     }
 
     return StaggeredGridView.builder(
-      itemCount: childCount,
+      itemCount: childCount + 1,
       physics: ClampingScrollPhysics(),
       addAutomaticKeepAlives: false,
       shrinkWrap: false,
       padding: EdgeInsets.all(0),
       gridDelegate: SliverStaggeredGridDelegateWithFixedCrossAxisCount(
         staggeredTileBuilder: (int index) {
-          if (listFirstIndex.contains(index)) {
+          if (listFirstIndex.contains(index) || index == childCount) {
             return StaggeredTile.fit(4);
           }
 
@@ -63,9 +64,13 @@ class _UserMomentsState extends BaseState<UserMoments> {
         crossAxisCount: 4,
         mainAxisSpacing: 0,
         crossAxisSpacing: 0,
-        staggeredTileCount: childCount,
+        staggeredTileCount: childCount + 1,
       ),
       itemBuilder: (context, index) {
+        if (index == childCount) {
+          return _buildEndOfList();
+        }
+
         int momentIndex = 0;
         int imageIndex = 0;
 
@@ -170,6 +175,33 @@ class _UserMomentsState extends BaseState<UserMoments> {
       shrinkOffset: 0.96,
       child: MyFadeImage(
         widget.moments[momentIndex].images[imageIndex],
+      ),
+    );
+  }
+
+  Widget _buildEndOfList() {
+    return Container(
+      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+                height: 1,
+                color: MyColor.grey),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              "You reach the end of list",
+              style: MyAssetFont.boldAvatar,
+            ),
+          ),
+          Expanded(
+            child: Container(
+                height: 1,
+                color: MyColor.grey),
+          ),
+        ],
       ),
     );
   }
