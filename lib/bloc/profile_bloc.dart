@@ -8,16 +8,32 @@ class ProfileBloc extends BlocBase {
   BehaviorSubject<ProfileModel> _mainController = BehaviorSubject();
   Stream<ProfileModel> get mainStream => _mainController.stream;
 
+  PublishSubject<bool> _shadowController = PublishSubject();
+  Stream<bool> get shadowStream => _shadowController.stream;
+
+  bool _hasShadow = false;
+
   void loadData() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(milliseconds: 1000), () {
       ProfileModel model = profileModelFromJson(FakeJson.fakeProfileJson);
       _mainController.add(model);
     });
   }
 
+  void changeShadow(double offset) {
+    if (_hasShadow && offset == 0) {
+      _hasShadow = false;
+      _shadowController.add(_hasShadow);
+    } else if (!_hasShadow && offset != 0) {
+      _hasShadow = true;
+      _shadowController.add(_hasShadow);
+    }
+  }
+
   @override
   void dispose() {
     _mainController.close();
+    _shadowController.close();
   }
 
 }
