@@ -42,7 +42,7 @@ class _UserMomentsState extends BaseState<UserMoments> {
   @override
   Widget build(BuildContext context) {
     if (widget.moments.isListEmpty()) {
-      return Container();
+      return _buildEndOfList();
     }
 
     return StaggeredGridView.builder(
@@ -181,7 +181,7 @@ class _UserMomentsState extends BaseState<UserMoments> {
 
   Widget _buildEndOfList() {
     return Container(
-      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
       child: Row(
         children: <Widget>[
           Expanded(
